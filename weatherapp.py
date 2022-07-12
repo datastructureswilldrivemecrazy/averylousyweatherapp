@@ -1,3 +1,5 @@
+#this program is written with tkinter and the api used is AccuWeatherAPIs.
+
 from tkinter import*
 import requests
 from PIL import ImageTk,Image
@@ -14,18 +16,14 @@ w.title("Weather")
 w.resizable(0,0)
 
 try:
-     
 
-######################################
-#Mechenism
-     
      def weather_data(query):
                      res=requests.get('http://api.openweathermap.org/data/2.5/weather?'+query+'&appid=b9de77be5766d51fda752417be615b7e');
                      return res.json();
   
 
 
-     #Body UI
+    #body of the program
      Frame(w,width=800,height=50,bg='#353535').place(x=0,y=0)
 
      #serach bar
@@ -35,8 +33,7 @@ try:
      def on_leave(e):
           if e1.get()=='':   
                e1.insert(0,'Search City')
-
-         
+               
      e1 =Entry(w,width=21,fg='white',bg="#353535",border=0)
      e1.config(font=('Calibri (Body)',12))
      e1.bind("<FocusIn>", on_enter)
@@ -49,17 +46,10 @@ try:
      a=datetime.today().strftime('%B')
      b=(a.upper())
      q = datetime.now().month
-
-    
      now = datetime.now()
-
-
      c=now.strftime('%B')
      month=c[0:3]
-   
-
      today = datetime.today()
-
      date = today.strftime("%d")
 
 
@@ -83,15 +73,14 @@ try:
           try:
                check="{}".format(result['main']['temp'])
                celsius="{}".format(result['main']['temp'])
-          #print(check)
+        
           except:
                messagebox.showinfo("", "    City name not found    ")
 
           c=(int(float(check)))-273
           descp=("{}".format(result['weather'][0]['description']))
           weather=("{}".format(result['weather'][0]['main']))
-         # print(weather)
-
+       
 
           global img
 
